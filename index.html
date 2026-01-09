@@ -10,67 +10,67 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-[#010101] text-[#f2f2f2] min-h-screen flex items-center justify-center overflow-hidden font-['Inter']">
+<body class="bg-[#050208] text-[#f2f2f2] min-h-screen flex items-center justify-center overflow-hidden font-['Inter']">
 
-    <div class="bg-layer-1"></div>
-    <div class="bg-layer-2"></div>
+    <div class="bg-glow-purple"></div>
+    <div class="bg-mesh"></div>
     
-    <div class="wave-background">
+    <div class="wave-container">
         <svg class="wave-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
             <defs>
                 <path id="wave-segment" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
             </defs>
-            <g class="wave-anim">
-                <use href="#wave-segment" x="48" y="0" fill="rgba(255,255,255,0.02)" />
-                <use href="#wave-segment" x="48" y="3" fill="rgba(255,255,255,0.04)" />
-                <use href="#wave-segment" x="48" y="5" fill="rgba(255,255,255,0.01)" />
+            <g class="wave-motion">
+                <use href="#wave-segment" x="48" y="0" fill="rgba(139, 92, 246, 0.05)" />
+                <use href="#wave-segment" x="48" y="3" fill="rgba(139, 92, 246, 0.08)" />
+                <use href="#wave-segment" x="48" y="5" fill="rgba(139, 92, 246, 0.03)" />
             </g>
         </svg>
     </div>
 
-    <div class="relative z-20 w-full max-w-[420px] px-5">
-        <div class="visual-ears">
-            <div class="ear-item-l"></div>
-            <div class="ear-item-r"></div>
+    <div class="relative z-20 w-full max-w-[380px] sm:max-w-[420px] px-6">
+        <div class="cat-ears-ui">
+            <div class="ear-l"></div>
+            <div class="ear-r"></div>
         </div>
 
-        <div class="auth-wrapper border border-white/[0.07] bg-[#080808]/60 backdrop-blur-3xl rounded-[40px] p-12 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)]">
+        <div class="auth-card border border-purple-500/10 bg-[#0c0812]/70 backdrop-blur-3xl rounded-[35px] p-8 sm:p-10 shadow-[0_0_80px_-20px_rgba(139,92,246,0.3)]">
             
-            <div class="text-center mb-12">
-                <h1 class="text-3xl font-bold tracking-tight text-white">Create a account here :)</h1>
-                <div class="w-10 h-[2px] bg-white/20 mx-auto mt-6 rounded-full"></div>
+            <div class="text-center mb-8">
+                <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Create a account here :)</h1>
+                <div class="w-12 h-1 bg-purple-500/30 mx-auto mt-4 rounded-full"></div>
             </div>
 
-            <form id="mainForm" class="space-y-7">
-                <div class="space-y-2.5">
-                    <p class="text-[12px] font-semibold text-white/30 uppercase tracking-widest ml-1">Enter your username:</p>
+            <form id="authForm" class="space-y-6">
+                <div class="space-y-2">
+                    <p class="text-[11px] font-bold text-purple-300/40 uppercase tracking-widest ml-1">Enter your username:</p>
                     <div class="relative group">
-                        <i data-lucide="user" class="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20 group-focus-within:text-white transition-colors"></i>
-                        <input type="text" id="username" required class="w-full bg-white/[0.03] border border-white/[0.08] rounded-2xl py-4 px-14 focus:outline-none focus:border-white/30 focus:bg-white/[0.06] transition-all text-[15px] placeholder-white/5" placeholder="Username">
+                        <i data-lucide="user" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-purple-300/20 group-focus-within:text-purple-400 transition-colors"></i>
+                        <input type="text" id="username" required class="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl py-3.5 px-12 focus:outline-none focus:border-purple-500/40 focus:bg-purple-500/[0.03] transition-all text-sm placeholder-white/5" placeholder="Name">
                     </div>
                 </div>
 
-                <div class="space-y-2.5">
-                    <p class="text-[12px] font-semibold text-white/30 uppercase tracking-widest ml-1">Enter your password:</p>
+                <div class="space-y-2">
+                    <p class="text-[11px] font-bold text-purple-300/40 uppercase tracking-widest ml-1">Enter your password:</p>
                     <div class="relative group">
-                        <i data-lucide="shield-check" class="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20 group-focus-within:text-white transition-colors"></i>
-                        <input type="password" id="password" required class="w-full bg-white/[0.03] border border-white/[0.08] rounded-2xl py-4 px-14 focus:outline-none focus:border-white/30 focus:bg-white/[0.06] transition-all text-[15px] placeholder-white/5" placeholder="Password">
+                        <i data-lucide="lock" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-purple-300/20 group-focus-within:text-purple-400 transition-colors"></i>
+                        <input type="password" id="password" required class="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl py-3.5 px-12 focus:outline-none focus:border-purple-500/40 focus:bg-purple-500/[0.03] transition-all text-sm placeholder-white/5" placeholder="••••••••">
                     </div>
                 </div>
 
-                <button type="submit" class="w-full bg-white text-black font-extrabold py-4.5 rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-all text-sm shadow-[0_15px_30px_-10px_rgba(255,255,255,0.3)]">
+                <button type="submit" class="w-full bg-white text-black font-bold py-3.5 rounded-2xl hover:bg-purple-50 hover:scale-[1.01] active:scale-[0.98] transition-all text-sm shadow-[0_10px_30px_-5px_rgba(255,255,255,0.2)]">
                     Submit.
                 </button>
             </form>
 
-            <div class="flex items-center gap-6 my-10">
-                <div class="h-[1px] bg-white/[0.08] grow"></div>
-                <span class="text-[10px] text-white/20 font-black tracking-widest">OR</span>
-                <div class="h-[1px] bg-white/[0.08] grow"></div>
+            <div class="flex items-center gap-4 my-8">
+                <div class="h-[1px] bg-purple-500/10 grow"></div>
+                <span class="text-[10px] text-purple-300/20 font-black">OR</span>
+                <div class="h-[1px] bg-purple-500/10 grow"></div>
             </div>
 
-            <button id="discordAuth" class="w-full bg-white/[0.02] border border-white/[0.1] py-4 rounded-2xl flex items-center justify-center gap-3 hover:bg-white/[0.08] transition-all text-xs font-bold tracking-tight">
-                <i data-lucide="discord" class="w-4 h-4 text-[#5865F2]"></i>
+            <button id="discordBtn" class="w-full bg-[#5865F2]/5 border border-[#5865F2]/10 py-3.5 rounded-2xl flex items-center justify-center gap-3 hover:bg-[#5865F2]/10 transition-all text-xs font-semibold text-purple-200/70">
+                <i data-lucide="message-circle" class="w-4 h-4 text-[#5865F2]"></i>
                 login with discord.
             </button>
         </div>
