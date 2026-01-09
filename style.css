@@ -6,32 +6,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const authForm = document.getElementById('authForm');
-    const toggleBtn = document.getElementById('toggle-mode');
-    const authTitle = document.getElementById('auth-title');
-    const submitBtn = document.getElementById('submit-btn');
-    const authCard = document.getElementById('auth-card');
-    const discordBtn = document.getElementById('discordAuth');
+    const switchBtn = document.getElementById('switch-btn');
+    const switchText = document.getElementById('switch-text');
+    const titleText = document.getElementById('title-text');
+    const submitBtn = document.getElementById('main-submit');
+    const card = document.getElementById('auth-card');
+    const discordBtn = document.getElementById('discord-btn');
 
-    let isLogin = false;
+    let isLoginMode = false;
 
-    if (toggleBtn) {
-        toggleBtn.addEventListener('click', () => {
-            if (authCard) authCard.classList.add('flip-anim');
+    if (switchBtn) {
+        switchBtn.addEventListener('click', () => {
+            if (!card) return;
+            card.classList.add('card-flip');
             
             setTimeout(() => {
-                isLogin = !isLogin;
+                isLoginMode = !isLoginMode;
                 
-                if (isLogin) {
-                    authTitle.innerText = "login to you're account here.";
+                if (isLoginMode) {
+                    titleText.innerText = "login to you're account here.";
                     submitBtn.innerText = "Login here.";
-                    toggleBtn.innerText = "don't have a account? Create one here.";
+                    switchText.innerText = "don't have a account? Create one here.";
                 } else {
-                    authTitle.innerText = "Create a account here :)";
+                    titleText.innerText = "Create a account here :)";
                     submitBtn.innerText = "Submit.";
-                    toggleBtn.innerText = "login to your account.";
+                    switchText.innerText = "login to your account.";
                 }
                 
-                if (authCard) authCard.classList.remove('flip-anim');
+                card.classList.remove('card-flip');
             }, 300);
         });
     }
@@ -40,14 +42,28 @@ document.addEventListener('DOMContentLoaded', () => {
         authForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            if (submitBtn) {
-                submitBtn.innerText = "...";
-                submitBtn.disabled = true;
+            const user = document.getElementById('username').value.trim().toLowerCase();
+            const pass = document.getElementById('password').value;
+
+            if (!user || !pass) return;
+
+            let existingUsers = JSON.parse(localStorage.getItem('xenes_users') || '[]');
+
+            if (!isLoginMode) {
+                if (existingUsers.includes(user)) {
+                    alert("This username is already taken by a user or discord account.");
+                    return;
+                }
+                existingUsers.push(user);
+                localStorage.setItem('xenes_users', JSON.stringify(existingUsers));
             }
+
+            submitBtn.innerText = "...";
+            submitBtn.disabled = true;
 
             setTimeout(() => {
                 window.location.href = "/homepage";
-            }, 1000);
+            }, 800);
         });
     }
 
