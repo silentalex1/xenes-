@@ -1,73 +1,81 @@
-.bg-glow-purple {
+.grid-squares {
     position: fixed;
     inset: 0;
     z-index: -3;
-    background: radial-gradient(circle at 50% 50%, #12081d 0%, #050208 100%);
+    background-image: 
+        linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
 }
 
-.bg-mesh {
+.purple-glow {
     position: fixed;
     inset: 0;
     z-index: -2;
-    background-image: radial-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background: radial-gradient(circle at 50% 50%, #11081a 0%, #050208 100%);
 }
 
-.wave-container {
+.wave-layer {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 35vh;
-    z-index: 10;
-    pointer-events: none;
-    mask-image: linear-gradient(to top, black, transparent);
-}
-
-.wave-svg {
-    width: 100%;
     height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.6;
 }
 
-.wave-motion > use {
-    animation: flow 18s cubic-bezier(.55,.5,.45,.5) infinite;
+.waves-svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30vh;
 }
-.wave-motion > use:nth-child(1) { animation-delay: -2s; animation-duration: 9s; }
-.wave-motion > use:nth-child(2) { animation-delay: -4s; animation-duration: 13s; }
-.wave-motion > use:nth-child(3) { animation-delay: -6s; animation-duration: 20s; }
 
-@keyframes flow {
+.parallax-waves > use {
+    animation: move-forever 20s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+.parallax-waves > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
+.parallax-waves > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
+.parallax-waves > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
+
+@keyframes move-forever {
     0% { transform: translate3d(-90px,0,0); }
     100% { transform: translate3d(85px,0,0); }
 }
 
-.cat-ears-ui {
+.visual-cat-ears {
     position: absolute;
-    top: -14px;
-    right: 35px;
+    top: -12px;
+    right: 40px;
     display: flex;
     gap: 12px;
     z-index: 50;
 }
 
-.ear-l, .ear-r {
-    width: 24px;
-    height: 22px;
+.ear-left, .ear-right {
+    width: 22px;
+    height: 20px;
     background: #ffffff;
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    border-radius: 4px;
-    filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
+    border-radius: 3px;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
 }
 
-.ear-l { transform: rotate(-12deg); }
-.ear-r { transform: rotate(12deg); }
+.ear-left { transform: rotate(-10deg); }
+.ear-right { transform: rotate(10deg); }
 
-.auth-card {
+.auth-box {
     box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
 }
 
-@media (max-width: 640px) {
-    .auth-card {
-        padding: 2rem;
-    }
+.flip-anim {
+    transform: rotateY(360deg) scale(0.95);
+    opacity: 0.5;
+}
+
+input::placeholder {
+    color: rgba(255,255,255,0.05);
 }
