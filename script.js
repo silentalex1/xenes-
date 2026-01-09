@@ -1,39 +1,30 @@
-const XENES_ID = "1458271432654983169";
+const APP_ID = "1458271432654983169";
 
 document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
 
-    const mainForm = document.getElementById('mainForm');
-    const discordAuth = document.getElementById('discordAuth');
+    const authForm = document.getElementById('authForm');
+    const discordBtn = document.getElementById('discordBtn');
 
-    mainForm.addEventListener('submit', (e) => {
+    authForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        const userValue = document.getElementById('username').value;
-        const passValue = document.getElementById('password').value;
-        const submitBtn = mainForm.querySelector('button');
+        const btn = authForm.querySelector('button');
+        const user = document.getElementById('username').value;
+        const pass = document.getElementById('password').value;
 
-        submitBtn.innerText = "...";
-        submitBtn.disabled = true;
+        btn.innerText = "...";
+        btn.disabled = true;
 
-        const requestData = {
-            id: XENES_ID,
-            action: "register",
-            user: userValue,
-            pass: passValue
-        };
-
-        console.log("Request sent:", requestData);
+        console.log("Account Creation:", { user, pass, id: APP_ID });
 
         setTimeout(() => {
-            alert(`You are now signed in.`);
-            submitBtn.innerText = "Submit.";
-            submitBtn.disabled = false;
-        }, 1200);
+            window.location.href = "/homepage";
+        }, 1000);
     });
 
-    discordAuth.addEventListener('click', () => {
-        console.log("Discord link sent for client:", XENES_ID);
-        window.location.href = `https://discord.com/api/oauth2/authorize?client_id=${XENES_ID}&scope=identify`;
+    discordBtn.addEventListener('click', () => {
+        console.log("Discord Login:", APP_ID);
+        alert("Discord login is ready.");
     });
 });
