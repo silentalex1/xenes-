@@ -1,75 +1,94 @@
-const CLIENT_ID = "1458271432654983169";
+:root {
+    --purple: #8b5cf6;
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
+body {
+    -webkit-tap-highlight-color: transparent;
+}
 
-    const authForm = document.getElementById('authForm');
-    const switchBtn = document.getElementById('switch-btn');
-    const switchText = document.getElementById('switch-text');
-    const titleText = document.getElementById('title-text');
-    const submitBtn = document.getElementById('main-submit');
-    const card = document.getElementById('auth-card');
-    const discordBtn = document.getElementById('discord-btn');
+.grid-system {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background-image: 
+        linear-gradient(rgba(139, 92, 246, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.04) 1px, transparent 1px);
+    background-size: 55px 55px;
+}
 
-    let isLoginMode = false;
+.glow-radial {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background: radial-gradient(circle at center, #130a21 0%, #050208 100%);
+}
 
-    if (switchBtn) {
-        switchBtn.addEventListener('click', () => {
-            if (!card) return;
-            card.classList.add('card-flip');
-            
-            setTimeout(() => {
-                isLoginMode = !isLoginMode;
-                
-                if (isLoginMode) {
-                    titleText.innerText = "login to you're account here.";
-                    submitBtn.innerText = "Login here.";
-                    switchText.innerText = "don't have a account? Create one here.";
-                } else {
-                    titleText.innerText = "Create a account here :)";
-                    submitBtn.innerText = "Submit.";
-                    switchText.innerText = "login to your account.";
-                }
-                
-                card.classList.remove('card-flip');
-            }, 300);
-        });
-    }
+.wave-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
 
-    if (authForm) {
-        authForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const user = document.getElementById('username').value.trim().toLowerCase();
-            const pass = document.getElementById('password').value;
+.wave-svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 38vh;
+    min-height: 250px;
+}
 
-            if (!user || !pass) return;
+.wave-parallax > use {
+    animation: wave-flow 15s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+.wave-parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 8s; }
+.wave-parallax > use:nth-child(2) { animation-delay: -4s; animation-duration: 12s; }
+.wave-parallax > use:nth-child(3) { animation-delay: -6s; animation-duration: 18s; }
 
-            let existingUsers = JSON.parse(localStorage.getItem('xenes_users') || '[]');
+@keyframes wave-flow {
+    0% { transform: translate3d(-90px,0,0); }
+    100% { transform: translate3d(85px,0,0); }
+}
 
-            if (!isLoginMode) {
-                if (existingUsers.includes(user)) {
-                    alert("This username is already taken by a user or discord account.");
-                    return;
-                }
-                existingUsers.push(user);
-                localStorage.setItem('xenes_users', JSON.stringify(existingUsers));
-            }
+.cat-ears-wrap {
+    position: absolute;
+    top: -14px;
+    right: 30px;
+    display: flex;
+    gap: 15px;
+    z-index: 50;
+}
 
-            submitBtn.innerText = "...";
-            submitBtn.disabled = true;
+.ear-l, .ear-r {
+    width: 25px;
+    height: 22px;
+    background: #ffffff;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
 
-            setTimeout(() => {
-                window.location.href = "/homepage";
-            }, 800);
-        });
-    }
+.ear-l { transform: rotate(-12deg); }
+.ear-r { transform: rotate(12deg); }
 
-    if (discordBtn) {
-        discordBtn.addEventListener('click', () => {
-            window.location.href = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&response_type=code&scope=identify`;
-        });
-    }
-});
+.card-main {
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.06);
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+}
+
+.card-flip {
+    transform: perspective(1000px) rotateY(180deg) scale(0.9);
+    opacity: 0;
+}
+
+input::placeholder {
+    color: rgba(255,255,255,0.08);
+}
+
+@media (max-width: 640px) {
+    .grid-system { background-size: 40px 40px; }
+    .cat-ears-wrap { right: 20px; }
+}
